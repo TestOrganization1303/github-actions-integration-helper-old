@@ -29674,9 +29674,11 @@ async function preparePipelineResults(inputs) {
     core.info(`Mitigated policy findings: ${policyFindingsToExlcude.length}`);
     const filteredFindingsArray = findingsArray.filter((finding) => {
         return !policyFindingsToExlcude.some((mitigatedFinding) => {
+            core.info(`${JSON.stringify(finding.files.source_file)}   Filtered pipeline findingsBefore: ${JSON.stringify(mitigatedFinding.finding_details)}`);
             if (mitigatedFinding.finding_details.file_path.charAt(0) === '/') {
                 mitigatedFinding.finding_details.file_path = mitigatedFinding.finding_details.file_path.substring(1);
             }
+            core.info(`${JSON.stringify(finding.files.source_file)}   Filtered pipeline findings111 After: ${JSON.stringify(mitigatedFinding.finding_details)}`);
             return (finding.files.source_file.file === mitigatedFinding.finding_details.file_path &&
                 +finding.cwe_id === mitigatedFinding.finding_details.cwe.id &&
                 Math.abs(finding.files.source_file.line - mitigatedFinding.finding_details.file_line_number) <= LINE_NUMBER_SLOP);
