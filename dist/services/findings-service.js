@@ -31,7 +31,7 @@ const app_config_1 = __importDefault(require("../app-config"));
 const http = __importStar(require("../api/http-request"));
 async function getApplicationFindings(appGuid, vid, vkey) {
     const getPolicyFindingsByApplicationResource = {
-        resourceUri: `${app_config_1.default.findingsUri}/${appGuid}/findings`,
+        resourceUri: `${app_config_1.default.api.veracode.findingsUri}/${appGuid}/findings`,
         queryAttribute: 'size',
         queryValue: '1000',
     };
